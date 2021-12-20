@@ -1,6 +1,7 @@
 import subprocess
 import socket
-global platform
+import platform
+
 
 
 def is_connected(hostname):
@@ -15,10 +16,10 @@ def is_connected(hostname):
         return False
 
 def wifiname():
-    print("Platform: \n 1.Windows \n 2.Linux \n ")
-    platform = int(input())
+    my_os = platform.system()
     Remote_server = "1.1.1.1"
-    if platform == 1:
+    if my_os == "Windows":
+        print("windows")
         interface = subprocess.check_output(["netsh", "wlan", "show", "interface"])
         interface = interface.decode("ascii")
         if "disconnected" in interface:
@@ -35,7 +36,7 @@ def wifiname():
             check_for_connection = is_connected(Remote_server)
             return ssid_name
             #connect()
-    elif platform == 2:
+    elif my_os == "Linux":
         print("Linux")
 
 get_stat = wifiname()
