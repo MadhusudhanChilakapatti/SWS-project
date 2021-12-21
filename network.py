@@ -16,9 +16,9 @@ def is_connected(hostname):
         return False
 
 def wifiname():
-    my_os = platform.system()
+    get_os = platform.system()
     Remote_server = "1.1.1.1"
-    if my_os == "Windows":
+    if get_os == "Windows":
         print("windows")
         interface = subprocess.check_output(["netsh", "wlan", "show", "interface"])
         interface = interface.decode("ascii")
@@ -36,7 +36,7 @@ def wifiname():
             check_for_connection = is_connected(Remote_server)
             return ssid_name
             #connect()
-    elif my_os == "Linux":
+    elif get_os == "Linux":
         print("Linux")
 
 get_stat = wifiname()
